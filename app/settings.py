@@ -1,6 +1,17 @@
 import os
 from pathlib import Path
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # outros middlewares...
+]
+
+# (opcional, mas recomendado)
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 import dj_database_url
 from dotenv import load_dotenv
 

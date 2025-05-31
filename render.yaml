@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: livraria-django
+    env: python
+    plan: starter
+    buildCommand: pdm install && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: pdm run gunicorn config.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings
+      - key: PYTHON_ENV
+        value: production
+      - key: DATABASE_URL
+        # Substitua pelo seu DATABASE_URL correto do Supabase
+        value: postgres://postgres.oifjwaavmmxjkdqlyuod:brayangamer013@aws-0-sa-east-1.pooler.supabase.com:5432/postgres
